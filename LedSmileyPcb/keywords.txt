@@ -1,0 +1,39 @@
+#######################################
+# Syntax Coloring Map For LedSmileyPcb
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+LedSmileyPcb	KEYWORD1
+Button	        KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+shutdown		    KEYWORD2
+setScanLimit		KEYWORD2
+setIntensity		KEYWORD2
+clearDisplay		KEYWORD2
+update		        KEYWORD2
+setFont		        KEYWORD2
+getFontLengh		KEYWORD2
+setLed		        KEYWORD2
+setColumn		    KEYWORD2
+setRow		        KEYWORD2
+scrollDelay		    KEYWORD2
+printChar		    KEYWORD2
+scrollChar		    KEYWORD2
+begin		        KEYWORD2
+read		        KEYWORD2
+toggled		        KEYWORD2
+pressed		        KEYWORD2
+released		    KEYWORD2
+has_changed		    KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
