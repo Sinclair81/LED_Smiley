@@ -10,3 +10,16 @@
 <!-- markdownlint-enable MD033 -->
 
 A Arduino Leonardo like PCB with 65 LED's and 5 Buttons.
+
+MCU - ATMEGA32U4-AU
+LED Driver - MAX7219CWG
+
+Button 1 - D0
+Button 2 - D1
+Button 3 - D2
+Button 4 - D3
+Button 5 - D4
+
+LED 1    - D13
+
+LED 2 to LED 65 -  MAX7219CWG
