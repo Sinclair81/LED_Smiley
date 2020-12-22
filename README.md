@@ -20,9 +20,9 @@ Button 2        | D1
 Button 3        | D2  
 Button 4        | D3  
 Button 5        | D4  
-MAX7219CWG LOAD | D10  
-MAX7219CWG CLK  | D11  
-MAX7219CWG DIN  | D12  
+Max7219CWG LOAD | D10  
+Max7219CWG CLK  | D11  
+Max7219CWG DIN  | D12  
 LED 1           | D13  
-LED 2 to LED 65 | MAX7219CWG  
+LED 2 to LED 65 | Max7219CWG  
   
