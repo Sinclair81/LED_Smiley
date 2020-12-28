@@ -1,3 +1,24 @@
+/*    
+ *    Approx. 80% of the LED code are from:
+ * 
+ *    LedControl.h - A library for controling Leds with a MAX7219/MAX7221
+ *    Copyright (c) 2007 Eberhard Fahle
+ *    http://wayoda.github.io/LedControl/
+ * 
+ *    AND:
+ * 
+ *    LedMatrix.h - An Arduino library for led dot matrix using MAX72XX drivers
+ *    Copyright (c) 2015 Aaron Groom
+ *    https://github.com/agr00m/LedMatrix
+ * 
+ * 
+ *    100% of the Button code are from:
+ * 
+ *    Button.h - a small library for Arduino to handle button debouncing
+ *    Copyright (C) 2016 Michael D K Adams
+ *    https://github.com/madleech/Button
+ * 
+ */
 
 #include "LedSmileyPcb.h"
 
