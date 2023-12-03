@@ -1,24 +1,3 @@
-/*    
- *    Approx. 80% of the LED code are from:
- * 
- *    LedControl.h - A library for controling Leds with a MAX7219/MAX7221
- *    Copyright (c) 2007 Eberhard Fahle
- *    http://wayoda.github.io/LedControl/
- * 
- *    AND:
- * 
- *    LedMatrix.h - An Arduino library for led dot matrix using MAX72XX drivers
- *    Copyright (c) 2015 Aaron Groom
- *    https://github.com/agr00m/LedMatrix
- * 
- * 
- *    100% of the Button code are from:
- * 
- *    Button.h - a small library for Arduino to handle button debouncing
- *    Copyright (C) 2016 Michael D K Adams
- *    https://github.com/madleech/Button
- * 
- */
 
 #include "LedSmileyPcb.h"
 
@@ -288,4 +267,103 @@ bool Button::pressed() {
 // has the button gone from on -> off
 bool Button::released() {
 	return (read() == RELEASED && has_changed());
+}
+
+
+/***************************************************************************************
+ *                                                                                     *
+ *          Button-Arduino Code !!!                                                    *
+ *          https://github.com/davidepalladino/Button-Arduino                          *
+ *                                                                                     *
+ ***************************************************************************************/
+
+Button_v2::Button_v2(uint8_t pin) : Button_v2(pin, B_NOPULLUP, DEFAULT_LONG_PRESS) {}
+
+Button_v2::Button_v2(uint8_t pin, input_t mode) : Button_v2(pin, mode, DEFAULT_LONG_PRESS) {}
+
+Button_v2::Button_v2(uint8_t pin, uint32_t timeLongPress) : Button_v2(pin, B_NOPULLUP, timeLongPress) {}
+
+Button_v2::Button_v2(uint8_t pin, input_t mode, uint32_t timeLongPress) {
+    this->pin = pin;
+
+    setMode(mode);
+    setValuePress();
+
+    pinMode(this->pin, this->mode);
+    
+    setTimeLongPress(timeLongPress);
+}
+
+void Button_v2::setTimeLongPress(uint32_t timeLongPress) { this->timeLongPress = timeLongPress; }
+
+uint32_t Button_v2::getTimeLongPress() { return timeLongPress; }
+
+int8_t Button_v2::checkPress() {  
+    /* Read and save the value for next analysis. */
+    uint8_t valueRead = digitalRead(pin);
+
+    /* Cheching if the button is pressed in this moment. */
+    if (valueRead == valuePress) {
+        /* Checking if is the first press or not. */
+        if (!isPressed) {
+            //Serial.println("Is pressed.");
+            isPressed = true;
+
+            /* Checking if is set the time of long press. If there is a value, will be set the timeout. */
+            if (getTimeLongPress() > DEFAULT_LONG_PRESS) {
+                timeOut = millis() + getTimeLongPress();
+            }
+
+        } else {
+            /* Checking if is the long press. */
+            if ((millis() >= timeOut) && (getTimeLongPress() > DEFAULT_LONG_PRESS) && !isLongPressed) {
+                //Serial.println("Is long press on first time.");
+                actualValue = LONG_PRESS;
+                isLongPressed = true;
+            } else if (isLongPressed) {
+                actualValue = NO_PRESS;
+            } else {
+                actualValue = NO_PRESS;
+            }
+        }
+    
+    /* Else, the button is not pressed in this moment. */
+    } else {
+        /* Checking if is the short press, verifying if is set the "timeLongPress" or not. */      
+        if (isPressed && (((actualValue != -1) && (millis() < timeOut) && !isLongPressed) || (getTimeLongPress() == DEFAULT_LONG_PRESS))) {
+            //Serial.println("Is short press.");
+            isPressed = false;
+            isLongPressed = false;
+            
+            actualValue = SHORT_PRESS;
+
+        /* Else, is not a press. */
+        } else {
+            //Serial.println("Is not pressed.");
+            isPressed = false;
+            isLongPressed = false;
+            
+            actualValue = NO_PRESS;
+        }
+    }
+    
+    return actualValue;
+}
+
+void Button_v2::setMode(input_t mode) {
+    /* Translation of "mode" parameter "B_NOPULLUP"/"B_PULLUP" to the rispective "INPUT"/"INPUT_PULLUP". */
+    if (mode == B_NOPULLUP) {
+        this->mode = INPUT;
+    } else if (mode == B_PULLUP) {
+        this->mode = INPUT_PULLUP;
+    }
+}
+
+void Button_v2::setValuePress() {
+    /* Checking what is the value of press, "HIGH" if the mode is INPUT; "LOW" if is INPUT_PULLUP. */
+    if (mode == INPUT) {
+        valuePress = HIGH;
+    } else if (mode == INPUT_PULLUP) {
+        valuePress = LOW;
+    }
 }

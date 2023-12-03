@@ -16,7 +16,8 @@ LED Driver - Max7219CWG
 The main parts of the library code are from:  
 [LedControl.h](http://wayoda.github.io/LedControl/) Copyright (c) 2007 Eberhard Fahle  
 [LedMatrix.h](https://github.com/agr00m/LedMatrix) Copyright (c) 2015 Aaron Groom  
-[Button.h](https://github.com/madleech/Button) Copyright (c) 2016 Michael D K Adams  
+[Button.h (v1)](https://github.com/madleech/Button) Copyright (c) 2016 Michael D K Adams  
+[Button.h (v2)](https://github.com/davidepalladino/Button-Arduino) Copyright (c) 2021 Davide Palladino  
   
 Name            | Pin
 --------------- | ---------------------

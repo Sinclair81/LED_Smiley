@@ -8,6 +8,7 @@
 
 LedSmileyPcb	KEYWORD1
 Button	        KEYWORD1
+Button_v2       KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -32,8 +33,18 @@ toggled		        KEYWORD2
 pressed		        KEYWORD2
 released		    KEYWORD2
 has_changed		    KEYWORD2
+setTimeLongPress    KEYWORD2
+getTimeLongPress    KEYWORD2
+checkPress          KEYWORD2
+setMode             KEYWORD2
+setValuePress       KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
 #######################################
 
+NO_PRESS           LITERAL1
+SHORT_PRESS        LITERAL1
+LONG_PRESS         LITERAL1
+B_PULLUP           LITERAL1
+B_NOPULLUP         LITERAL1
